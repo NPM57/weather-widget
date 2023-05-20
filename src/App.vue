@@ -1,15 +1,16 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/weather">Weather</RouterLink>
+    <div class="flex mt-5 w-full justify-center gap-1">
+      <nav class="flex gap-x-4 mb-4">
+        <NavigationButton>
+          <RouterLink to="/">Home</RouterLink>
+        </NavigationButton>
+        <NavigationButton>
+          <RouterLink to="/about">About</RouterLink>
+        </NavigationButton>
+        <NavigationButton>
+          <RouterLink to="/weather">Weather</RouterLink>
+        </NavigationButton>
       </nav>
     </div>
   </header>
@@ -17,56 +18,7 @@ import HelloWorld from './components/HelloWorld.vue'
   <RouterView />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    /* padding-right: calc(var(--section-gap) / 2); */
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+import NavigationButton from './components/NavigationButton.vue'
+</script>

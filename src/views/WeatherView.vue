@@ -19,7 +19,7 @@
     <WeatherCard
       v-else
       :cityName="cityName"
-      :currentTemp="rawData.main.temp"
+      :currentTemp="currentTemp"
       :feelsLike="rawData.main.feels_like"
       :tempMax="rawData.main.temp_max"
       :tempMin="rawData.main.temp_min"
@@ -67,7 +67,7 @@ export default {
   },
   computed: {
     cityName() {
-      return rawData && rawData.name ? rawData.name : selected
+      return this.rawData && this.rawData.name ? this.rawData.name : selected
     },
     iconSource() {
       if (Object.keys(this.rawData).length > 0 && this.locationWeatherData.icon) {

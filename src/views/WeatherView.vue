@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-4">
     <div class="flex justify-center space-x-4 items-center">
       <select class="border-solid border-2 rounded p-2" v-model="selected">
         <option disabled value="">Please select one</option>
@@ -16,25 +16,16 @@
       </div>
     </div>
     <Loading v-if="isLoading" />
-    <div v-else class="flex justify-center">
-      <div class="flex-col">
-        <div class="flex justify-center text-indigo-500 mt-4 mb-2 text-2xl">
-          {{ rawData && rawData.name ? rawData.name : selected }}
-        </div>
-        <div class="flex justify-center text-4xl">
-          {{ rawData.main && rawData.main.temp ? rawData.main.temp : 'Null' }}&degF
-        </div>
-        <div class="flex justify-center items-center">
-          <div><img id="wicon" :src="iconSource" alt="Weather icon" /></div>
-          <div>{{ locationWeatherData.main ? locationWeatherData.main : 'Null' }}</div>
-        </div>
-        <div class="flex justify-center">
-          L {{ rawData.main && rawData.main.temp_min ? rawData.main.temp_min : 'Null' }}&degF - H
-          {{ rawData.main && rawData.main.temp_max ? rawData.main.temp_max : 'Null' }}&degF
-        </div>
-        <div class="flex justify-start">Description: {{ locationWeatherData.description }}</div>
-      </div>
-    </div>
+    <WeatherCard
+      v-else
+      :cityName="cityName"
+      :currentTemp="rawData.main.temp"
+      :feelsLike="rawData.main.feels_like"
+      :tempMax="rawData.main.temp_max"
+      :tempMin="rawData.main.temp_min"
+      :weatherStatus="locationWeatherData.main"
+      :weatherIcon="iconSource"
+    />
   </div>
 </template>
 
@@ -42,10 +33,12 @@
 import axios from 'axios'
 import Loading from '../components/Loading.vue'
 import DetectLocationBrowserMixin from '../components/Mixins/DetectLocationBrowser.vue'
+import WeatherCard from '../components/WeatherCard.vue'
 
 export default {
   components: {
-    Loading
+    Loading,
+    WeatherCard
   },
   mixins: [DetectLocationBrowserMixin],
   data() {
@@ -73,6 +66,9 @@ export default {
     }
   },
   computed: {
+    cityName() {
+      return rawData && rawData.name ? rawData.name : selected
+    },
     iconSource() {
       if (Object.keys(this.rawData).length > 0 && this.locationWeatherData.icon) {
         return `http://openweathermap.org/img/w/${this.locationWeatherData.icon}.png`

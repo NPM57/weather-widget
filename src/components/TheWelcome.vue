@@ -9,7 +9,7 @@ import SupportIcon from './icons/IconSupport.vue'
 
 <template>
   <div class="flex-col justify-center text-center">
-    <div class="text-lg font-bold mb-4 text-blue-500">Weather Widget tech stack</div>
+    <div class="text-lg font-bold mb-4 text-blue-500">Weather Widget</div>
     <WelcomeItem>
       <template #icon>
         <DocumentationIcon />

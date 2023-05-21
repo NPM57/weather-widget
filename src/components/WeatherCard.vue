@@ -3,7 +3,7 @@
     <div class="flex flex-wrap">
       <div class="w-full px-2">
         <div
-          class="bg-gray-700 text-white relative min-w-0 break-words rounded-lg overflow-hidden shadow-sm mb-4 w-full bg-white dark:bg-gray-600"
+          class="bg-gray-700 text-white relative min-w-0 break-words rounded-lg overflow-hidden shadow-sm mb-4 w-full dark:bg-gray-600"
         >
           <div class="px-6 py-6 relative">
             <div class="flex mb-4 justify-between items-center">
